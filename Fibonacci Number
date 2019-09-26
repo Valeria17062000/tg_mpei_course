@@ -1,0 +1,13 @@
+https://leetcode.com/problems/fibonacci-number/
+
+class Solution {
+public:
+    int fib(int N) {
+        vector <int> a = {0, 1};
+         for (int i = 1; i < N ; i++) {
+             a.push_back(a[i] + a[i-1]);
+         }
+        return a[N];
+        
+    }
+};
