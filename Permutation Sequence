@@ -1,0 +1,40 @@
+https://leetcode.com/problems/permutation-sequence/
+
+class Solution {
+public:string getPermutation(int n, int k)
+{
+    bool outout[n];
+    
+    int *a = new int[n];
+    std::ostringstream stringStream;
+    a[0] = 1;
+    
+    for (int i = 1; i < n; i++)
+        a[i] = a[i - 1] * i;
+
+    for (int i = 0; i < n; i++)
+        outout[i] = false;
+    
+    int s;
+    for(int i = n - 1; i >= 0; i--){
+        s = 1;
+        
+        while(k > a[i]) {
+            s++;
+            k = k - a[i];
+        }
+        
+        for(int j =0; j <n; j++){
+            if(j+1 <= s && outout[j]){
+                s++;
+            }
+        }
+        
+        outout[s-1] = true;
+        stringStream << "" << s;
+    }
+    
+    return stringStream.str();
+}
+    
+}
