@@ -1,0 +1,25 @@
+https://leetcode.com/problems/network-delay-time/
+
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+     vector<int> distance(N, INT_MAX);
+        distance[K-1]=0;
+        for (int i=0; i<N; i++){
+            for (auto& time:times){
+                int a = time[0]-1, b = time[1]-1, c = time[2];
+            
+             if (distance[a] != INT_MAX && distance[b] > distance[a] + c) 
+                    distance[b] = distance[a] + c;
+            }
+        }
+        int res=distance[0];
+        for (auto& d:distance){
+            res=max(res,d);
+        }
+    if (res==INT_MAX)
+        return -1;
+    else
+        return res;
+    }
+};
